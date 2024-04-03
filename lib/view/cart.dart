@@ -111,6 +111,7 @@ class CartPage extends StatelessWidget {
                                       cartProvider.increment(cartProduct);
                                     },
                                   ),
+                                  VerticalDivider(),
                                   IconButton(
                                     onPressed: () {
                                       cartProvider.removeItem(cartProduct);
