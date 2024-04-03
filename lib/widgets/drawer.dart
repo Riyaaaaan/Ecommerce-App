@@ -23,77 +23,80 @@ class DrawerWidget extends StatelessWidget {
     return Drawer(
       backgroundColor: Color(0xFFB0D9B1),
       child: Builder(
-        builder: (drawerContext) => ListView(
+        builder: (drawerContext) => Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            AppBar(
-              backgroundColor: const Color(0xFFB0D9B1),
-              title: const Text(
-                'My Dashboard',
-                style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic),
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            ListTile(
-              title: const Text(
-                'Home',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
+            const DrawerHeader(
+              child: Center(
+                child: Text(
+                  'My Dashboard',
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic),
                 ),
               ),
-              leading: const Icon(Icons.home),
-              trailing: const Icon(
-                Icons.arrow_forward_ios,
-                color: Colors.black87,
-              ),
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => HomePage(
-                    username: username,
-                    password: password,
+            ),
+            Column(
+              children: [
+                ListTile(
+                  title: const Text(
+                    'Home',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ));
-              },
-            ),
-            ListTile(
-              title: const Text(
-                'My Cart',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
+                  leading: const Icon(Icons.home),
+                  trailing: const Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.black87,
+                  ),
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => HomePage(
+                        username: username,
+                        password: password,
+                      ),
+                    ));
+                  },
                 ),
-              ),
-              leading: const Icon(Icons.shopping_cart),
-              trailing: const Icon(
-                Icons.arrow_forward_ios,
-                color: Colors.black87,
-              ),
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => CartPage(),
-                ));
-              },
-            ),
-            ListTile(
-              title: const Text(
-                'My Order Details',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
+                ListTile(
+                  title: const Text(
+                    'My Cart',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  leading: const Icon(Icons.shopping_cart),
+                  trailing: const Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.black87,
+                  ),
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => CartPage(),
+                    ));
+                  },
                 ),
-              ),
-              leading: const Icon(Icons.card_giftcard_sharp),
-              trailing: const Icon(
-                Icons.arrow_forward_ios,
-                color: Colors.black87,
-              ),
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const OrderDetailPage(),
-                ));
-              },
+                ListTile(
+                  title: const Text(
+                    'My Order Details',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  leading: const Icon(Icons.card_giftcard_sharp),
+                  trailing: const Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.black87,
+                  ),
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const OrderDetailPage(),
+                    ));
+                  },
+                ),
+              ],
             ),
             const SizedBox(
               height: 20,
