@@ -21,7 +21,7 @@ class DrawerWidget extends StatelessWidget {
     }
 
     return Drawer(
-      backgroundColor: Color(0xFFB0D9B1),
+      backgroundColor: const Color(0xFFB0D9B1),
       child: Builder(
         builder: (drawerContext) => Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -31,9 +31,11 @@ class DrawerWidget extends StatelessWidget {
                 child: Text(
                   'My Dashboard',
                   style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      fontStyle: FontStyle.italic),
+                    fontFamily: 'Montserrat',
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
+                  ),
                 ),
               ),
             ),
@@ -105,6 +107,7 @@ class DrawerWidget extends StatelessWidget {
               title: const Text(
                 'Logout',
                 style: TextStyle(
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),

@@ -33,7 +33,10 @@ class ProductCard extends StatelessWidget {
             ),
             ListTile(
               title: Text(product.productname!),
-              subtitle: Text('Price: ₹ ${product.price.toString()}'),
+              subtitle: Text(
+                '₹ ${product.price.toString()}',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
           ],
         ),

@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:ecommerce_app/models/product_model.dart';
+import 'package:ecommerce_app/view/cart.dart';
 import 'package:ecommerce_app/widgets/productcard.dart';
 import 'package:ecommerce_app/view/category_product.dart';
 import 'package:ecommerce_app/webservice/webservice.dart';
@@ -29,12 +30,23 @@ class HomePage extends StatelessWidget {
           elevation: 0,
           centerTitle: true,
           title: const Text(
-            'E-COMMERCE',
+            'E  STORE',
             style: TextStyle(
+              fontFamily: 'Montserrat',
               fontWeight: FontWeight.bold,
               color: Colors.black,
             ),
           ),
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => CartPage(),
+                ));
+              },
+              icon: const Icon(Icons.shopping_cart),
+            )
+          ],
         ),
         drawer: DrawerWidget(
           username: username,
@@ -153,7 +165,8 @@ class HomePage extends StatelessWidget {
                           physics: const ClampingScrollPhysics(),
                           gridDelegate:
                               const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2),
+                            crossAxisCount: 2,
+                          ),
                           itemCount: products.length,
                           itemBuilder: (context, index) {
                             return ProductCard(

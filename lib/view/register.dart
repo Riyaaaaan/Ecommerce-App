@@ -160,124 +160,140 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 height: 50,
               ),
               //Name
-              TextFormField(
-                controller: name,
-                keyboardType: TextInputType.name,
-                decoration: InputDecoration(
-                  labelText: "Name",
-                  hintText: 'Enter your Name',
-                  prefixIcon: const Icon(Icons.person_pin_rounded),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(50),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: TextFormField(
+                  controller: name,
+                  keyboardType: TextInputType.name,
+                  decoration: InputDecoration(
+                    labelText: "Name",
+                    hintText: 'Enter your Name',
+                    prefixIcon: const Icon(Icons.person_pin_rounded),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
                   ),
+                  validator: (name) => name!.length < 3
+                      ? 'Name should be atleast 3 characters'
+                      : null,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
-                validator: (name) => name!.length < 3
-                    ? 'Name should be atleast 3 characters'
-                    : null,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
               ),
               const SizedBox(
                 height: 10,
               ),
               //phone
-              TextFormField(
-                controller: phone,
-                keyboardType: TextInputType.phone,
-                decoration: InputDecoration(
-                  labelText: "Phone",
-                  hintText: 'Enter your number',
-                  prefixIcon: const Icon(Icons.phone),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(50),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: TextFormField(
+                  controller: phone,
+                  keyboardType: TextInputType.phone,
+                  decoration: InputDecoration(
+                    labelText: "Phone",
+                    hintText: 'Enter your number',
+                    prefixIcon: const Icon(Icons.phone),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
                   ),
+                  validator: (value) =>
+                      value!.length < 10 ? 'Number should be 10 digits' : null,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
-                validator: (value) =>
-                    value!.length < 10 ? 'Number should be 10 digits' : null,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
               ),
               const SizedBox(
                 height: 10,
               ),
               //address
-              TextFormField(
-                controller: address,
-                minLines: 1,
-                maxLines: 2,
-                keyboardType: TextInputType.text,
-                decoration: InputDecoration(
-                  labelText: "Address",
-                  hintText: 'Enter your Address',
-                  prefixIcon: const Icon(Icons.place),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(50),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: TextFormField(
+                  controller: address,
+                  minLines: 1,
+                  maxLines: 2,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    labelText: "Address",
+                    hintText: 'Enter your Address',
+                    prefixIcon: const Icon(Icons.place),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
                   ),
+                  validator: (name) => name!.length < 10
+                      ? 'Name should be atleast 10 characters'
+                      : null,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
-                validator: (name) => name!.length < 10
-                    ? 'Name should be atleast 10 characters'
-                    : null,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
               ),
               const SizedBox(
                 height: 10,
               ),
               //username
-              TextFormField(
-                controller: username,
-                keyboardType: TextInputType.name,
-                decoration: InputDecoration(
-                  labelText: "Username",
-                  hintText: 'Enter your Username',
-                  prefixIcon: const Icon(Icons.person),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(50),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: TextFormField(
+                  controller: username,
+                  keyboardType: TextInputType.name,
+                  decoration: InputDecoration(
+                    labelText: "Username",
+                    hintText: 'Enter your Username',
+                    prefixIcon: const Icon(Icons.person),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
                   ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter your username';
+                    } else if (!RegExp(r'^[a-zA-Z0-9]+$').hasMatch(value)) {
+                      return 'Username must contain both characters and numbers';
+                    } else {
+                      return null;
+                    }
+                  },
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter your username';
-                  } else if (!RegExp(r'^[a-zA-Z0-9]+$').hasMatch(value)) {
-                    return 'Username must contain both characters and numbers';
-                  } else {
-                    return null;
-                  }
-                },
-                autovalidateMode: AutovalidateMode.onUserInteraction,
               ),
               const SizedBox(
                 height: 10,
               ),
               //password
-              TextFormField(
-                controller: password,
-                keyboardType: TextInputType.visiblePassword,
-                obscureText: _obscureText,
-                decoration: InputDecoration(
-                  labelText: "Password",
-                  hintText: 'Enter your Password',
-                  prefixIcon: const Icon(Icons.lock),
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        _obscureText = !_obscureText;
-                      });
-                    },
-                    icon: Icon(
-                        _obscureText ? Icons.visibility : Icons.visibility_off),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: TextFormField(
+                  controller: password,
+                  keyboardType: TextInputType.visiblePassword,
+                  obscureText: _obscureText,
+                  decoration: InputDecoration(
+                    labelText: "Password",
+                    hintText: 'Enter your Password',
+                    prefixIcon: const Icon(Icons.lock),
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      },
+                      icon: Icon(_obscureText
+                          ? Icons.visibility
+                          : Icons.visibility_off),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
                   ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(50),
-                  ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter your username';
+                    } else if (!RegExp(r'^[a-zA-Z0-9]+$').hasMatch(value)) {
+                      return 'password must contain both characters and numbers';
+                    } else {
+                      return null;
+                    }
+                  },
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter your username';
-                  } else if (!RegExp(r'^[a-zA-Z0-9]+$').hasMatch(value)) {
-                    return 'Username must contain both characters and numbers';
-                  } else {
-                    return null;
-                  }
-                },
-                autovalidateMode: AutovalidateMode.onUserInteraction,
               ),
               const SizedBox(
                 height: 30,

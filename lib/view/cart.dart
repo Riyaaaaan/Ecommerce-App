@@ -29,7 +29,6 @@ class CartPage extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.delete),
             onPressed: () {
-              // Call the clearCart method to remove all items from the cart
               Provider.of<Cart>(context, listen: false).clearCart();
             },
           ),
@@ -67,7 +66,6 @@ class CartPage extends StatelessWidget {
                               height: 50,
                               fit: BoxFit.cover,
                             ),
-
                             title: Text(
                               cartProduct.name,
                               softWrap: true,
@@ -84,7 +82,6 @@ class CartPage extends StatelessWidget {
                                 fontSize: 14,
                               ),
                             ),
-
                             trailing: Container(
                               height: 35,
                               decoration: BoxDecoration(
@@ -111,7 +108,7 @@ class CartPage extends StatelessWidget {
                                       cartProvider.increment(cartProduct);
                                     },
                                   ),
-                                  VerticalDivider(),
+                                  const VerticalDivider(),
                                   IconButton(
                                     onPressed: () {
                                       cartProvider.removeItem(cartProduct);
@@ -122,8 +119,6 @@ class CartPage extends StatelessWidget {
                                 ],
                               ),
                             ),
-
-                            // You can add more information or customize as needed
                           ),
                         );
                       },
@@ -169,7 +164,8 @@ class CartPage extends StatelessWidget {
                               : Navigator.push(context, MaterialPageRoute(
                                   builder: (context) {
                                     return CheckoutPage(
-                                        cart: context.read<Cart>().getItems);
+                                      cart: context.read<Cart>().getItems,
+                                    );
                                   },
                                 ));
                         },

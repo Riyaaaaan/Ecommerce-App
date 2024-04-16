@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:ecommerce_app/widgets/animation.dart';
 import 'package:http/http.dart' as http;
 import 'package:ecommerce_app/models/user_model.dart';
 import 'package:ecommerce_app/provider/provider.dart';
@@ -76,25 +77,11 @@ class _CheckOutPageState extends State<CheckoutPage> {
         log('Ordered Items: $jsondata');
         if (response.body.contains("Success")) {
           vm.clearCart();
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            duration: Duration(seconds: 3),
-            behavior: SnackBarBehavior.floating,
-            padding: EdgeInsets.all(15.0),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-            content: Text("YOUR ORDER SUCCESSFULLY COMPLETED",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.white,
-                )),
-          ));
+          // animation
+
           Navigator.push(context, MaterialPageRoute(
             builder: (context) {
-              return HomePage(
-                username: username!,
-                password: '',
-              );
+              return LottieAnime();
             },
           ));
         }
