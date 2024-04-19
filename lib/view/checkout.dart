@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:ecommerce_app/payments/upi_payment.dart';
 import 'package:ecommerce_app/widgets/animation.dart';
 import 'package:http/http.dart' as http;
 import 'package:ecommerce_app/models/user_model.dart';
 import 'package:ecommerce_app/provider/provider.dart';
-import 'package:ecommerce_app/view/home.dart';
 import 'package:ecommerce_app/webservice/webservice.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,8 +13,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 // ignore: must_be_immutable
 class CheckoutPage extends StatefulWidget {
   final List<CartProduct> cart;
+  final double totalAmount;
 
-  const CheckoutPage({Key? key, required this.cart}) : super(key: key);
+  const CheckoutPage({Key? key, required this.cart, required this.totalAmount})
+      : super(key: key);
 
   @override
   State<CheckoutPage> createState() => _CheckOutPageState();
@@ -222,6 +224,65 @@ class _CheckOutPageState extends State<CheckoutPage> {
                 'Online Payment',
               ),
             ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.05,
+            ),
+            if (selectedValue == 2) // Only show if 'Pay Now' is selected
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.3,
+                  width: MediaQuery.of(context).size.width,
+                  padding: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Select Payment Method',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Divider(),
+                      ListTile(
+                        splashColor: Colors.white,
+                        title: Text(
+                          'UPI Apps',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => UpiPaymentsPage(
+                              totalAmount: widget.totalAmount,
+                            ),
+                          ));
+                        },
+                      ),
+                      ListTile(
+                        title: Text(
+                          'Credit/Debit Cards',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        onTap: () {
+                          // Handle selection
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
           ],
         ),
       ),

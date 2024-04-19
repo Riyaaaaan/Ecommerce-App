@@ -32,44 +32,49 @@ class _LottieAnimeState extends State<LottieAnime>
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return HomePage(
-              username: '',
-              password: '',
-            );
-          },
-        ),
-      ),
-      child: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: Lottie.network(
-                'https://lottie.host/0844b20e-bb5d-4b1f-b78a-bda4d05337d6/CCfB1wIa5U.json',
-                controller: _controller,
-                onLoaded: (composition) {
-                  _controller
-                    ..duration = composition.duration
-                    ..forward();
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: Lottie.network(
+              'https://lottie.host/0844b20e-bb5d-4b1f-b78a-bda4d05337d6/CCfB1wIa5U.json',
+              controller: _controller,
+              onLoaded: (composition) {
+                _controller
+                  ..duration = composition.duration
+                  ..forward();
+              },
+            ),
+          ),
+          const SizedBox(height: 30),
+          Text(
+            'Order Placed Successfully !',
+            style: TextStyle(
+              fontFamily: 'Montserrat',
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+          OutlinedButton(
+            child: Text(
+              'Continue',
+              style: TextStyle(color: Colors.green),
+            ),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return HomePage(
+                    username: '',
+                    password: '',
+                  );
                 },
               ),
             ),
-            const SizedBox(height: 30),
-            Text(
-              'Order Placed Successfully !',
-              style: TextStyle(
-                fontFamily: 'Montserrat',
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

@@ -145,29 +145,38 @@ class CartPage extends StatelessWidget {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          context.read<Cart>().getItems.isEmpty
-                              ? ScaffoldMessenger.of(context)
-                                  .showSnackBar(const SnackBar(
-                                  duration: Duration(seconds: 3),
-                                  behavior: SnackBarBehavior.floating,
-                                  padding: EdgeInsets.all(15.0),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10))),
-                                  content: Text("Cart is empty !!!",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.white,
-                                      )),
-                                ))
-                              : Navigator.push(context, MaterialPageRoute(
-                                  builder: (context) {
-                                    return CheckoutPage(
-                                      cart: context.read<Cart>().getItems,
-                                    );
-                                  },
-                                ));
+                          var cart = context.read<Cart>();
+                          if (cart.getItems.isEmpty) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                duration: Duration(seconds: 3),
+                                behavior: SnackBarBehavior.floating,
+                                padding: EdgeInsets.all(15.0),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                ),
+                                content: Text(
+                                  "Cart is empty !!!",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            );
+                          } else {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CheckoutPage(
+                                  cart: cart.getItems,
+                                  totalAmount: cart.totalPrice,
+                                ),
+                              ),
+                            );
+                          }
                         },
                         child: const Text('Order Now'),
                       ),
